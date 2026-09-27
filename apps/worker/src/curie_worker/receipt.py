@@ -52,6 +52,13 @@ _READ_ONLY_COMMANDS = (
     r"git diff(?: --stat)?",
 )
 
+# The platform memory tools (#1461, ADR-0167). Saving, changing or forgetting a
+# remembered fact is not a change to the world the person asked about, so the
+# action is still recorded but never announced: a receipt line per save would
+# be noise under every answer. Live names, as the runner's ``curie`` server
+# publishes them.
+_UNANNOUNCED_TOOLS = frozenset({"mcp__curie__remember", "mcp__curie__update", "mcp__curie__forget"})
+
 
 def _clamp(text: str) -> str:
     text = " ".join(str(text).split())
@@ -120,7 +127,11 @@ def render_receipt(actions: list[dict[str, Any]]) -> str | None:
     that an operator sees the system knows the difference.
     """
 
-    visible = [action for action in actions if not _read_only_bash(action)]
+    visible = [
+        action
+        for action in actions
+        if action.get("tool") not in _UNANNOUNCED_TOOLS and not _read_only_bash(action)
+    ]
     if not visible:
         return None
     lines: list[str] = []

@@ -1373,6 +1373,30 @@ This lets a developer iterate on an agent built for someone else's
 workspace with no Slack access. Full flag reference is in
 [`cli/README.md`](../cli/README.md).
 
+### Letting the agent remember facts
+
+An agent's memory tools (`remember`, `update` and `forget`, ADR-0167) are off
+by default. Turn them on per agent:
+
+```bash
+curie cluster overrides <agent> --memory-writes on
+```
+
+The setting takes effect at the agent's next sandbox boot. With it on, the
+agent keeps channel memory for each channel it works in, alongside its agent
+memory. It is also shown guidance on what to save. To read that guidance,
+replace it with a file's text, or go back to the platform default:
+
+```bash
+curie cluster memory <agent> --guidance
+curie cluster memory <agent> --guidance-from guidance.md
+curie cluster memory <agent> --reset-guidance
+```
+
+A new thread picks up changed guidance. A live thread keeps what it booted
+with. `--memory-writes off` unmounts the tools at the next boot. Facts already
+saved stay stored and are still shown to the agent.
+
 ### Connecting Slack
 
 ```bash
