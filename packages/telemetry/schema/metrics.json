@@ -1145,6 +1145,7 @@
           "/agents/{agent_id}/hook-secret",
           "/agents/{agent_id}/kill",
           "/agents/{agent_id}/memory",
+          "/agents/{agent_id}/memory/guidance",
           "/agents/{agent_id}/memory/{index}",
           "/agents/{agent_id}/memory/{index}/provenance",
           "/agents/{agent_id}/resume",
@@ -1262,7 +1263,7 @@
           "5xx"
         ]
       },
-      "cardinality_bound": 4360
+      "cardinality_bound": 4400
     },
     "curie.http.server.request.duration": {
       "type": "histogram",
@@ -1288,6 +1289,7 @@
           "/agents/{agent_id}/hook-secret",
           "/agents/{agent_id}/kill",
           "/agents/{agent_id}/memory",
+          "/agents/{agent_id}/memory/guidance",
           "/agents/{agent_id}/memory/{index}",
           "/agents/{agent_id}/memory/{index}/provenance",
           "/agents/{agent_id}/resume",
@@ -1405,7 +1407,7 @@
           "5xx"
         ]
       },
-      "cardinality_bound": 4360
+      "cardinality_bound": 4400
     },
     "curie.http.server.active": {
       "type": "up_down_counter",
@@ -1431,6 +1433,7 @@
           "/agents/{agent_id}/hook-secret",
           "/agents/{agent_id}/kill",
           "/agents/{agent_id}/memory",
+          "/agents/{agent_id}/memory/guidance",
           "/agents/{agent_id}/memory/{index}",
           "/agents/{agent_id}/memory/{index}/provenance",
           "/agents/{agent_id}/resume",
@@ -1541,7 +1544,7 @@
           "OTHER"
         ]
       },
-      "cardinality_bound": 872
+      "cardinality_bound": 880
     },
     "curie.background.loop": {
       "type": "counter",
